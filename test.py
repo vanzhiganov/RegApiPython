@@ -33,5 +33,5 @@ paramsSuggest = {
 }
 
 
-print (regRuApiDomain.getApi(paramsSuggest,'get_suggest'))
+print (regRuApiDomain().getApi(paramsSuggest,'get_suggest'))
 #print (regruapi.regRuApiDomain.getApi(params,'get_prices'))

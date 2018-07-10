@@ -2,17 +2,15 @@
 """"""
 import json
 from urllib.parse import urlencode
-from urllib.request import urlopen
+from urllib import request
 
 
 class RegRuBase(object):
     '''Базовый класс'''
-    apiPath = 'https://api.reg.ru/api/regru2'
-
     def __init__(self):
-        pass
+        self.apiPath = 'https://api.reg.ru/api/regru2'
 
-    def errorParse(self,errorCode):
+    def errorParse(self, errorCode):
         """Парсим стандартные ошибки. На вход передаем то, что у нас вернулось от АПИ"""
         dictErrors = {
             'NO_USERNAME' : 'No username given.',

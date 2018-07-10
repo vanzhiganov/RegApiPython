@@ -1,24 +1,25 @@
 # coding: utf-8
 """"""
-# import config
-from urllib2.parse import urlencode
-from urllib2.request import urlopen
+import urllib3
 from .base import RegRuBase
+from urllib import request
+
 
 class regRuApiDomain(object):
-    pathPrefix = '/domain/'
-    pathPostfix = '?'
-
     def __init__(self):
-        pass
+        self.pathPrefix = '/domain/'
+        self.pathPostfix = '?'
 
-    def getApi(params, action):
+    def getApi(self, params, action):
         """Получаем функцию у регру"""
         RegRu = RegRuBase()
         apiPathDir = self.pathPrefix + action + self.pathPostfix
-        print (RegRu.generateApiUrl(apiPathDir, params))
-        response = urlopen(RegRu.generateApiUrl(apiPathDir, params))
-        jdata = eval(response.read().decode('utf8'))
+
+        response = request.urlopen(RegRu.generateApiUrl(apiPathDir, params))
+
+        jdata = response.read().decode('utf8')
+
+        print(RegRu.checkCurrentErrors(jdata))
 
         if RegRu.checkCurrentErrors(jdata) == 1:
             return jdata

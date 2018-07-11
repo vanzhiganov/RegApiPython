@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from RegApi import regRuApiDomain
+from RegApi import RegRuApiDomain
 
 params = {
     'username' : 'test',
@@ -33,5 +33,5 @@ paramsSuggest = {
 }
 
 
-print (regRuApiDomain().getApi(paramsSuggest,'get_suggest'))
+print (RegRuApiDomain().get_api(paramsSuggest,'get_suggest'))
 #print (regruapi.regRuApiDomain.getApi(params,'get_prices'))

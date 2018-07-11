@@ -1,27 +1,28 @@
 # coding: utf-8
-""""""
+"""RegApi"""
+import json
 import urllib3
-from .base import RegRuBase
 from urllib import request
+from .base import RegRuBase
 
 
-class regRuApiDomain(object):
+class RegRuApiDomain(object):
+    """Domains"""
     def __init__(self):
-        self.pathPrefix = '/domain/'
-        self.pathPostfix = '?'
+        self.path_prefix = '/domain/'
+        self.path_postfix = '?'
 
-    def getApi(self, params, action):
+    def get_api(self, params, action):
         """Получаем функцию у регру"""
-        RegRu = RegRuBase()
-        apiPathDir = self.pathPrefix + action + self.pathPostfix
+        reg_ru = RegRuBase()
+        api_path_dir = self.path_prefix + action + self.path_postfix
 
-        response = request.urlopen(RegRu.generateApiUrl(apiPathDir, params))
+        response = request.urlopen(reg_ru.generate_api_url(api_path_dir, params))
 
         jdata = response.read().decode('utf8')
 
-        print(RegRu.checkCurrentErrors(jdata))
+        # print(RegRu.checkCurrentErrors(jdata))
 
-        if RegRu.checkCurrentErrors(jdata) == 1:
-            return jdata
-        else:
-            return RegRu.checkCurrentErrors(jdata)
+        if reg_ru.check_current_errors(jdata) == 1:
+            return json.loads(jdata)
+        return reg_ru.check_current_errors(jdata)
